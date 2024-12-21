@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Witarist - Hire Developers</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary: #FF5722;
+            --dark: #1A1A1A;
+            --light: #FFFFFF;
+            --turquoise: #40E0D0;
+            --coral: #FF7F50;
+            --gold: #DAA520;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: var(--light);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: var(--light);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* Hero Sections */
+        .hero {
+            background: var(--dark);
+            color: var(--light);
+            padding: 8rem 5% 4rem;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .build-section {
+            background: var(--light);
+            padding: 6rem 5%;
+            text-align: center;
+        }
+
+        .build-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .build-section h2 span {
+            color: var(--primary);
+        }
+
+        .geometric-pattern {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 400px;
+            margin: 2rem auto;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 86.6px solid;
+        }
+
+        .triangle:nth-child(1) { border-bottom-color: var(--coral); }
+        .triangle:nth-child(2) { border-bottom-color: var(--turquoise); }
+        .triangle:nth-child(3) { border-bottom-color: var(--gold); }
+        .triangle:nth-child(4) { border-bottom-color: var(--turquoise); }
+
+        /* Services Section */
+        .services {
+            padding: 4rem 5%;
+            background: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            padding: 2rem;
+            border-radius: 8px;
+            background: var(--light);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 4rem 5%;
+            background: #f5f5f5;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .process-icon {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Comparison Section */
+        .comparison {
+            padding: 4rem 5%;
+            background: var(--light);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-column {
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .comparison-column.without {
+            background: #f5f5f5;
+        }
+
+        .comparison-column.with {
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        .comparison-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 4rem 5%;
+            background: #f5f5f5;
+        }
+
+        .testimonial-card {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            background: var(--light);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 4rem 5%;
+            background: var(--light);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 5%;
+            background: var(--dark);
+            color: var(--light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-input {
+            padding: 0.75rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            background: rgba(255,255,255,0.05);
+            color: var(--light);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: var(--light);
+            padding: 4rem 5%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-column h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--light);
+            text-decoration: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero, .contact-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .geometric-pattern {
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="logo">&lt;Witarist/&gt;</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Hire Developers</a>
+            <a href="#">Services</a>
+            <a href="#">Blogs</a>
+            <a href="#">Company</a>
+        </div>
+        <a href="#contact" class="cta-button">Get In Touch</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Hire a <span>dedicated developer</span> from Witarist within <span>48 Hours!</span></h1>
+            <p>Hire top developers in just 3 days with Witarist, your trusted partner in sourcing elite tech talent.</p>
+            <a href="#contact" class="cta-button">Book A Free Consultation</a>
+        </div>
+        <div class="hero-image">
+            <!-- Profile cards would be positioned absolutely here -->
+        </div>
+    </section>
+
+    <!-- Build Section -->
+    <section class="build-section">
+        <h2><span>Build, Launch, and Grow</span> With Our Development Services</h2>
+        <p>From eye-catching websites to powerful apps and software, we create digital solutions that drive success.</p>
+        <div class="geometric-pattern">
+            <div class="triangle"></div>
+            <div class="triangle"></div>
+            <div class="triangle"></div>
+            <div class="triangle"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2>Our Development Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3>Web Development</h3>
+                <p>Make a lasting impression with a website that reflects your brand perfectly. We build fast, responsive, and visually compelling websites.</p>
+                <a href="#" class="cta-button">View Details</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>Software Development</h3>
+                <p>Empower your business with software that works the way you do. We develop custom software solutions that streamline processes.</p>
+                <a href="#" class="cta-button">View Details</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Mobile & Web App Development</h3>
+                <p>Elevate your business with dynamic web and mobile apps designed to engage users and boost growth.</p>
+                <a href="#" class="cta-button">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <h2>How We Help You Hire the Right Developers</h2>
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-icon">📞</div>
+                <h3>Book A Call</h3>
+                <p>Connect with us to discuss your development needs and goals.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-icon">📅</div>
+                <h3>Schedule Interview</h3>
+                <p>Share your project details and expectations with us.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-icon">🚀</div>
+                <h3>Begin Your Project</h3>
+                <p>Kick off your project with confidence!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison">
+        <h2>Why Should You Hire Developers from Witarist?</h2>
+        <div class="comparison-grid">
+            <div class="comparison-column without">
+                <h3>Without Witarist</h3>
+                <div class="comparison-item">❌ Tired of hiring "top developers" whose skills don't match</div>
+                <div class="comparison-item">❌ Face steep costs from recruiting and training</div>
+                <div class="comparison-item">❌ Need project manager for multiple freelancers</div>
+                <div class="comparison-item">❌ Risk to confidential data</div>
+                <div class="comparison-item">❌ Delays and inconsistencies</div>
+            </div>
+            <div class="comparison-column with">
+                <h3>With Witarist</h3>
+                <div class="comparison-item">✓ Fast and streamlined recruitment</div>
+                <div class="comparison-item">✓ Simplified project management</div>
+                <div class="comparison-item">✓ GDPR and HIPAA compliant</div>
+                <div class="comparison-item">✓ Reduced chances of mistakes and delays</div>
+                <div class="comparison-item">✓ Transparent communication</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Clients Have to Say About Witarist</h2>
+        <div class="testimonial-card">
+            <p>"Witarist demonstrated impressive dedication and efficiency, successfully delivering our project within six months. Their outstanding project management ensured deadlines were met, with clear and responsive communication throughout."</p>
+            <div class="testimonial-author">
+                <img src="/placeholder.svg?height=60&width=60" alt="Project Manager" class="author-image">
+                <div>
+                    <h4>Project Manager</h4>
+                    <p>Thales Group</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">
+                    What types of developers can I hire from Witarist?
+                    <span>+</span>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How quickly can I get started with a developer?
+                    <span>+</span>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What happens if I'm not satisfied with the developer?
+                    <span>+</span>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do Witarist developers work remotely or onsite?
+                    <span>+</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Let's connect!</h2>
+        <div class="contact-grid">
+            <form class="contact-form">
+                <input type="text" placeholder="Full Name*" required class="form-input">
+                <input type="email" placeholder="Company Email*" required class="form-input">
+                <input type="tel" placeholder="Contact No*" required class="form-input">
+                <select class="form-input">
+                    <option value="">Select Your Service</option>
+                    <option value="web">Web Development</option>
+                    <option value="mobile">Mobile Development</option>
+                    <option value="software">Software Development</option>
+                </select>
+                <textarea placeholder="How can we help?*" required class="form-input" rows="4"></textarea>
+                <button type="submit" class="cta-button">Submit Your Inquiry</button>
+            </form>
+            <div class="calendar-widget">
+                <!-- Calendar widget would be embedded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>About Us</h3>
+                <p>Welcome to Witarist, where technology meets innovation. We empower businesses through cutting-edge technology solutions.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram">📱</a>
+                    <a href="#" aria-label="LinkedIn">💼</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Hire Developers</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Hire MERN Stack Developer</a></li>
+                    <li><a href="#">Hire React JS Developers</a></li>
+                    <li><a href="#">Hire Node.js Developers</a></li>
+                    <li><a href="#">Hire Java Developers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Web Development Services</a></li>
+                    <li><a href="#">Mobile App Development</a></li>
+                    <li><a href="#">Software Development</a></li>
+                    <li><a href="#">IT Staff Augmentation</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Information about current events related to our company</p>
+                <form class="contact-form">
+                    <input type="email" placeholder="Enter your email ID*" required class="form-input">
+                    <button type="submit" class="cta-button">Subscribe Now</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
